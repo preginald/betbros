@@ -1,7 +1,7 @@
 <?php require_once 'core/init.php';
 
 $option = $_GET['option'];
-$tBetsL = $counter=0;
+$newBank = $param4 = $bsID = $tBetsL = $counter=0;
 
 function get_stake($counter,$stake=0,$stakingID,$bank=0,$bsID=0,$rPL=0,$param1=0,$param2=0,$param3=0,$param4=0) {
 	switch ($stakingID) {
@@ -85,13 +85,13 @@ if ($option == "getLabels") {
 if ($option == "getSelections") {
 	$json = array();
 
-	$lID = implode(', ', $_GET['lID']);
-	$stakingID = sanitize($_GET['staking']);
-	$rPL = $bank= sanitize($_GET['bank']);
-	$stake = sanitize($_GET['stake']);
-	$param1 = sanitize($_GET['param1']);
-	$param2 = sanitize($_GET['param2']);
-	$param3 = sanitize($_GET['param3']);
+	$lID = (isset($_GET['lID']) ? implode(', ', $_GET['lID']) : '');
+	$stakingID = (isset($_GET['staking']) ? sanitize($_GET['staking']) : '');
+	$rPL = $bank= (isset($_GET['bank'])) ? sanitize($_GET['bank']) : '';
+	$stake = (isset($_GET['stake'])) ? sanitize($_GET['stake']) : '';
+	$param1 = (isset($_GET['param1'])) ? sanitize($_GET['param1']) : '';
+	$param2 = (isset($_GET['param2'])) ? sanitize($_GET['param2']) : '';
+	$param3 = (isset($_GET['param3'])) ? sanitize($_GET['param3']) : '';
 	
 	//print_r_pre($_REQUEST);
 
