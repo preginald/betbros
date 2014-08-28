@@ -1,4 +1,7 @@
-<?php $sql = "SELECT * FROM topMenu WHERE parent='0' AND enable='1' ORDER BY `order`"; $result = mysql_query($sql); ?>
+<?php 
+$menuClass = '';
+$sql = "SELECT * FROM topMenu WHERE parent='0' AND enable='1' ORDER BY `order`"; $result = mysql_query($sql); 
+?>
     
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -17,7 +20,11 @@
             <ul class="nav navbar-nav">
             <?php 
             while($row = mysql_fetch_array($result)) { ;
-            $menuClass = ($_GET['page'] == $row['file']) ? 'class="active"' : ''; ?>
+            if (isset($_GET['page'])) {
+              $menuClass = ($_GET['page'] == $row['file']) ? 'class="active"' : '';
+            }
+             
+            ?>
             <li <?= $menuClass ?>><a href="<?= $row['link']; ?>"><?= $row['1']; ?></a></li>
             <?php }; ?>
 

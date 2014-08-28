@@ -1,5 +1,7 @@
 <?php require_once 'core/init.php'; 
 
+$where = '';
+
 if (isset($_GET['option']) && $_GET['option'] == 'filter') {
 	$val = sanitize($_GET['val']);
 	$date = sanitize($_GET['date']);

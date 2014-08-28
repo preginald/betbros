@@ -2,18 +2,18 @@
 
 $option = $_GET['option'];
 
-$cID = $_GET['cID'];
-$eID = $_GET['eID'];
-$e = $_GET['e'];
-$esID = $_GET['esID'];
-$tsID = $_GET['tsID'];
-$tID = $_GET['tID'];
-$t = $_GET['t'];
-$sname = $_GET['sname'];
-$lname = $_GET['lname'];
+$cID = (isset($_GET['cID'])? $_GET['cID'] : '');
+$eID = (isset($_GET['eID'])? $_GET['eID'] : '');
+$e = (isset($_GET['e'])? $_GET['e'] : ''); 
+$esID = (isset($_GET['esID'])? $_GET['esID'] : '');
+$tsID = (isset($_GET['tsID'])? $_GET['tsID'] : '');
+$tID = (isset($_GET['tID'])? $_GET['tID'] : '');
+$t = (isset($_GET['t'])? $_GET['t'] : ''); 
+$sname = (isset($_GET['sname'])? $_GET['sname'] : '');
+$lname = (isset($_GET['lname'])? $_GET['lname'] : '');
 
-$startDate = $_GET['eventStartDate'];
-$endDate = $_GET['eventEndDate'];
+$startDate = (isset($_GET['eventStartDate'])? $_GET['eventStartDate'] : '');
+$endDate = (isset($_GET['eventEndDate'])? $_GET['eventEndDate'] : '');
 
 function event_by_country_dropDown($eventID,$cID,$sportsID){
 
