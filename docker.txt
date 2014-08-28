@@ -1,0 +1,1 @@
+sudo docker run -v=/home/preginald/Downloads/betbros.com.au:/var/www/betbros -t -i -p 80:80 preginald/betbros:v4
