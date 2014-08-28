@@ -100,7 +100,7 @@ $result = mysql_query($s); ?>
 	<?php
 	if (!empty($_GET['ID'])) {
 		while($row=mysql_fetch_assoc($result)){
-			$esID = $row['esID'];
+			$esID = (isset($row['esID']) ? $row['esID'] : '');
 			?>
 			<li class="list-group-item team" id="<?= $row['ID'] ?>">
 				<div class="row">
