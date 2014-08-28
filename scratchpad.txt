@@ -1,0 +1,102 @@
+events
+countries
+sports
+
+SELECT events.ID, events.name, countries.name, sports.name
+FROM events
+JOIN countries
+ON events.countryID=countries.id
+
+
+Array ( 
+
+[ID] => 3 
+[1] => Premier League 
+[2] => United Kingdom 
+[3] => Football ) 
+
+-------
+horses
+horseGender
+horseOwner
+horseTrainer
+countries
+
+SELECT horses.ID, horses.name, horses.birth, horseGender.name, horseOwner.lastName, horseTrainer.lastName, countries.name
+FROM horses
+JOIN horseGender
+ON horses.genderID=horseGender.ID
+JOIN horseOwner
+ON horses.OwnerID=horseOwner.ID
+JOIN horseTrainer
+ON horses.trainerID=horseTrainer.ID
+JOIN countries
+ON horses.countryID=countries.id;
+------
+<li><a href="admin.php">Home</a></li>
+
+echo "<li><a href=" . "sports.php?id=" . $row['ID'] . ">" . $row['1'] . "</a></li>";
+
+------
+
+fixtures
+sports
+events
+teams
+
+SELECT fixtures.ID, fixtures.date, sports.name, events.name, teams.name
+FROM fixtures
+JOIN sports
+ON fixtures.sportID=sports.ID
+JOIN events
+ON fixtures.eventID=events.ID
+JOIN teams
+ON fixtures.homeTeamID=teams.ID AND fixtures.awayTeamID=teams.ID;
+
+--------------
+
+function country_dropDown(){
+	if (isset($id)) {
+		$dropDown = mysql_query("SELECT * FROM countries");
+		while ($record = mysql_fetch_array($dropDown)) {
+			echo '<option' . 'selected="selected"' . 'value="' . $record['id'] . '">' . $record['name'] . '</option>';
+		} else {
+			$dropDown = mysql_query("SELECT * FROM countries");
+			while ($record = mysql_fetch_array($dropDown)) {
+				echo '<option value="' . $record['id'] . '">' . $record['name'] . '</option>';
+			}
+		}
+	}
+}
+
+------------ edit-trainers.php start
+<?php
+include 'core/init.php';
+protect_page();
+admin_protect();
+include 'includes/overall/header.php';
+?>
+
+<h1>Edit Trainers</h1>
+<?php include 'includes/admin-horse-menu.php';
+
+// Gets values from ID sent from address bar
+$id=$_GET['id']; 
+
+$sql = "SELECT * FROM horseTrainer WHERE ID='$id'";
+$result = mysql_query($sql);
+$rows=mysql_fetch_array($result);
+?>
+
+<form method="post" action="update-trainers-db.php" class="ajax">
+<input name="firstName" type="text" value="<? echo $rows['firstName']; ?>">
+<input name="lastName" type="text" value="<? echo $rows['lastName']; ?>">
+<input name="countryID" type="text" value="<? echo $rows['countryID']; ?>">
+<input name="id" type="hidden" value="<? echo $id; ?>">
+<input type="submit" name="Submit" value="Update">
+</form>
+<p>Australia=14, South Africa= 206, UK=235</p>
+
+<script src="js/contact.js"></script>
+<?php include 'includes/overall/footer.php'; ?>
+------------ edit-trainers.php finish

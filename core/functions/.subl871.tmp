@@ -1,0 +1,153 @@
+<?php
+function email($to, $subject, $body) {
+	mail($to, $subject, $body, 'From: hello@phpacademy.org');
+}
+
+function logged_in_redirect() {
+	if (logged_in() === true) {
+		header('Location: index.php');
+		exit();
+	}
+}
+
+function protect_page() {
+	if (logged_in() === false) {
+		header('Location: protected.php');
+		exit();
+	}
+}
+
+function admin_protect() {
+	global $user_data;
+	if (has_access($user_data['user_id'], 1) === false) {
+		header('Location: index.php');
+		exit();
+	}
+}
+
+function array_sanitize(&$item) {
+	$item = htmlentities(strip_tags(mysql_real_escape_string($item)));
+}
+
+function sanitize($data) {
+	return htmlentities(strip_tags(mysql_real_escape_string($data)));
+}
+
+function output_errors($errors) {
+	return '<ul><li>' . implode('</li><li>', $errors) . '</li></ul>';
+}
+
+function bet_lines_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM betLines");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function bet_type_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM betType");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function sports_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM sports");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function horse_gender_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM horseGender");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function horse_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM horses");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function horse_sex_dropdown(){
+	$dropDown = mysql_query("SELECT * FROM horseGender");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function country_dropDown(){
+		$dropDown = mysql_query("SELECT * FROM countries");
+		while ($record = mysql_fetch_array($dropDown)) {
+			echo '<option value="' . $record['id'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function horse_owner_dropDown(){
+	$dropDown = mysql_query("SELECT * FROM horseOwner");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['firstName'] ." " . $record['lastName'] . '</option>';
+	}
+}
+
+function horse_trainer_dropDown(){
+	$dropDown = mysql_query("SELECT * FROM horseTrainer");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['firstName'] ." " . $record['lastName'] . '</option>';
+	}
+}
+
+function event_dropDown(){
+	$dropDown = mysql_query("SELECT * FROM events");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+function fixture_event_dropDown(){
+	$dropDown = mysql_query("SELECT events.ID, events.name, countries.alpha_2 FROM events JOIN countries ON events.countryID=countries.id");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['0'] . '">'. $record['2'] . " " . $record['1'] . '</option>';
+	}
+}
+
+function teams_dropDown(){
+	$dropDown = mysql_query("SELECT * FROM teams");
+	while ($record = mysql_fetch_array($dropDown)) {
+		echo '<option value="' . $record['ID'] . '">' . $record['name'] . '</option>';
+	}
+}
+
+// from thydzik.com/php-factorial-and-combination-functions/
+function factorial($n) {
+    if ($n <= 1) {
+        return 1;
+    } else {
+        return factorial($n - 1) * $n;
+    }
+}
+ 
+function combinations($n, $k) {
+    //note this defualts to 0 if $n < $k
+    if ($n < $k) {
+        return 0;
+    } else {
+        return factorial($n)/(factorial($k)*factorial(($n - $k)));
+    }
+}
+
+function trixie() {
+	$selections = 3;
+	$doubles = 2;
+	$trebles = 1;
+	$totalBets = (combinations($selections,$doubles)); // +(combinations($selections,$trebles));
+	$totalLines = ($doubles*(combinations($selections,$doubles)))+($trebles*(combinations($selections,$trebles)));
+	echo "Total Bets:". $totalBets;
+	echo "<br>";
+	echo "Total Lines:". $totalLines;
+}
+
+?>
