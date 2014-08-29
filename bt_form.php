@@ -1,11 +1,11 @@
 <?php require_once 'core/init.php';
 
-$bank = $_POST['bank'];
-$stakingID = $_POST['stakingID'];
-$fxdparam1 = $_POST['fxd-param1'];
-$wlpparam1 = $_POST['wlp-param1']; 
-$wlpparam2 = $_POST['wlp-param2']; 
-$wlpparam3 = $_POST['wlp-param3'];
+$bank = (isset($_POST['bank'])) ? $_POST['bank'] : '';
+$stakingID = (isset($_POST['stakingID'])) ? $_POST['stakingID'] : '';
+$fxdparam1 = (isset($_POST['fxd-param1'])) ? $_POST['fxd-param1'] : '';
+$wlpparam1 = (isset($_POST['wlp-param1'])) ? $_POST['wlp-param1'] : ''; 
+$wlpparam2 = (isset($_POST['wlp-param2'])) ? $_POST['wlp-param2'] : ''; 
+$wlpparam3 = (isset($_POST['wlp-param3'])) ? $_POST['wlp-param3'] : ''; 
 ?>
 <div class="row">
 	<div class="panel panel-default">
