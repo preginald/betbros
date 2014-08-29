@@ -5003,6 +5003,7 @@ function get_betStatus_class_v2($bstID){
 }
 
 function get_bt_stats($bt_where){
+	$sRate = $gPLm = $minodds = $avgodds = $avgPL = $gPL = $tStake = $rPL = $stake = $todds = $tBets = $tBetsW = $tBetsL = $tBetsPn = $tBetsPu = $tBetsSingle = $tBetsACCU = '';
 	$result_bt = bt_table($bt_where);
 
 	$gReturns = 0;
@@ -5056,7 +5057,7 @@ function get_bt_stats($bt_where){
 
 	return array(
 		'gReturns' => $gReturns, 
-		'tStake' => number_format($tStake,2), 
+		'tStake' => number_format((double)$tStake,2), 
 		'gPL' => $gPL, 
 		'avgPL' => $avgPL, 
 		'avgodds' => $avgodds, 
