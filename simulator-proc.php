@@ -1,9 +1,10 @@
 <?php require_once 'core/init.php';
 
 $option = $_GET['option'];
-$newBank = $param4 = $bsID = $tBetsL = $counter=0;
+$param4 = $bsID = $tBetsL = $counter=0;
 
 function get_stake($counter,$stake=0,$stakingID,$bank=0,$bsID=0,$rPL=0,$param1=0,$param2=0,$param3=0,$param4=0) {
+	$newBank = 0;
 	switch ($stakingID) {
 		case '2':
 			$newBank = $_GET['bank'];
@@ -84,6 +85,8 @@ if ($option == "getLabels") {
 
 if ($option == "getSelections") {
 	$json = array();
+	$tOdds = $json['tBetsL'] = $json['tBetsW'] = $json['tBetsPn'] = $json['tBetsPu'] = 
+	$json['greturns'] = $json['gPL'] = $json['tstake'] = $json['html'] = '';
 
 	$lID = (isset($_GET['lID']) ? implode(', ', $_GET['lID']) : '');
 	$stakingID = (isset($_GET['staking']) ? sanitize($_GET['staking']) : '');
@@ -100,13 +103,6 @@ if ($option == "getSelections") {
 	$sb_order = "fix.date, fix.time DESC";
 
 	$r = sb_table($sb_where, $sb_order);
-
-
-	?>
-
-	<?php
-	
-
 
 	while ($row = mysql_fetch_assoc($r)) {
 		$t1name = $row['t1name'];
