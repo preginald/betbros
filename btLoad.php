@@ -1,6 +1,7 @@
 <?php
 include 'core/init.php';
 // procedure to draw Bet Tracker table
+$rPL = '';
 $option = $_GET['option'];
 
 $bt_where = "bt.userID = $session_user_id";
