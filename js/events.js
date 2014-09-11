@@ -527,6 +527,8 @@ $("body").on('keyup','#teamSeason',function(){
 
         }
       });
+  } else {
+  	$('.extra').addClass('hidden');
   };
 });
 

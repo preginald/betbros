@@ -20,7 +20,9 @@
 
 <div id="view_ts"></div>
 
-<div id="fix_div"></div>
+<div>
+	<ul id="fix_div"></ul>
+</div>
 
 <script id="es-view-template" type="text/x-handlebars-template">
 	<div class="well">

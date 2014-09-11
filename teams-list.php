@@ -52,7 +52,7 @@ if (isset($_GET['option']) && $_GET['option'] == 'cID' && !empty($_GET['ID'])) {
 			INNER JOIN brands AS spn
 			ON ts.sponsorID=spn.ID
 			
-			INNER JOIN countries AS c
+			INNER JOIN region AS c
 			ON c.id=e.countryID
 
 			WHERE es.ID = $esID

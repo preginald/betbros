@@ -25,7 +25,7 @@ function event_by_country_dropDown($eventID,$cID,$sportsID){
 
 		FROM events e	
 
-		INNER JOIN countries AS c
+		INNER JOIN region AS c
 		ON c.id=e.countryID
 
 		WHERE `sportID`=$sportsID AND e.countryID = $cID 
@@ -55,7 +55,7 @@ function event_by_season_dropDown($eID, $sID, $esID){
 			ON es.eventsID=e.ID
 			INNER JOIN brands AS spn
 			ON es.sponsorID=spn.ID
-			INNER JOIN countries AS c
+			INNER JOIN region AS c
 			ON e.countryID=c.id
 			INNER JOIN sports AS s
 			ON e.sportID=s.ID WHERE s.ID=$sID AND e.ID = $eID
